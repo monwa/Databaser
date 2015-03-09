@@ -10,10 +10,15 @@ CREATE TABLE Gruppe
 CREATE TABLE Ansatt
 	(Brukernavn VARCHAR(20) NOT NULL, 
      Passord VARCHAR(40) NOT NULL, 
-     PRIMARY KEY (Brukernavn),
+     PRIMARY KEY (Brukernavn)
      );
 
-CREATE TABLE Deltaker();
+CREATE TABLE Deltaker(
+	Brukernavn VARCHAR(20) NOT NULL,
+    AvtaleID INT NOT NULL,
+    DeltagerStatus BOOLEAN NOT NULL,
+    PRIMARY KEY (Brukernavn, AvtaleID),
+    FOREIGN KEY );
 
 CREATE TABLE Møteleder();
 
@@ -40,5 +45,3 @@ CREATE TABLE Alarm
     FOREIGN KEY (AvtaleID) REFERENCES Avtale,
     FOREIGN KEY (Brukernavn) REFERENCES Ansatt );
 
-    
-% ALTER TABLE Orders
