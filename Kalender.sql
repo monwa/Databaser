@@ -20,7 +20,9 @@ CREATE TABLE Møteleder();
 CREATE TABLE Invitert();
 
 CREATE TABLE Gruppemedlemmer();
-     
+
+CREATE TABLE AvtaleAlarmer();
+
 CREATE TABLE Avtale
 	(AvtaleID INT NOT NULL, 
     Dato VARCHAR (11) NOT NULL, 
