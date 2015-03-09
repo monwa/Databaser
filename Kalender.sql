@@ -13,7 +13,12 @@ CREATE TABLE Ansatt
      PRIMARY KEY (Brukernavn),
      );
 
-CREATE TABLE Deltaker();
+CREATE TABLE Deltaker(
+	Brukernavn VARCHAR(20) NOT NULL,
+    AvtaleID INT NOT NULL,
+    DeltagerStatus BOOLEAN NOT NULL,
+    PRIMARY KEY (Brukernavn, AvtaleID),
+    FOREIGN KEY "INSERT SOMTHING HERE EIVIND");
 
 CREATE TABLE Møteleder();
 
