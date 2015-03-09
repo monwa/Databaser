@@ -2,6 +2,8 @@ CREATE DATABASE Kalender;
 
 CREATE TABLE Gruppe
 	(GruppeID INT NOT NULL,
+	ParentGroup INT,
+	FOREIGN KEY(GruppeID) REFERENCES Gruppe(GruppeID),
 	PRIMARY KEY (GruppeID)
     );
 
@@ -32,3 +34,5 @@ CREATE TABLE Rom
 	Kapasitet INT NOT NULL,
     PRIMARY KEY (RomID)
     );
+    
+ALTER TABLE Orders
