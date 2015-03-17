@@ -21,9 +21,8 @@ if choice = 1:
 	# Send en spørring over ledige møterom i tidspunktet 
 	cursor.execute("SELECT RomID, Kapasitet FROM Avtale WHERE StoppTid<"+StartTid" OR StartTid>"+StoppTid"")
 	RomID = input("Skriv inn ønsket RomID")
-
-	Kapasitet = cursor. Select Kapasitet from Rom where RomID = RomID.
-	cursor.execute("INSERT INTO Avtale (Dato, StartTid, StoppTid, Beskrivelse, RomID, Kapasitet*/) VALUES ("+Dato+","+StartTid+","+StoppTid+","+Beskrivelse+","+RomID+")")
+	Kapasitet = "SELECT Kapasitet FROM Avtale"
+	cursor.execute("INSERT INTO Avtale (Dato, StartTid, StoppTid, Beskrivelse, RomID, Kapasitet*/) VALUES (%s, %s, %s, %s, %s, %s)", (Dato, StartTid, StoppTid, Beskrivelse, RomID, Kapasitet))
 if choice = 2:
 
 
@@ -51,3 +50,4 @@ numrows = int(cursor.rowcount)
 for x in range(0,numrows):
     row = cursor.fetchone()
     print row[0], "-->", row[1]
+	Kapasitet = cursor. Select Kapasitet from Rom where RomID = RomID.
