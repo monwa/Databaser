@@ -11,10 +11,13 @@ cursor = db.cursor()
 
 # execute SQL select statement
 statements = []
-statements.append("SELECT * FROM AVTALE")
-statements.append("INSERT INTO ANSATT" "")
-statements.append("SELECT * FROM ANSATT")
+statements.append("SELECT * FROM Avtale")
+statements.append("INSERT INTO Ansatt (Brukernavn, Passord) VALUES ('Gretha', 'Grethatheta')")
+statements.append("SELECT * FROM Ansatt")
 #statements.append("UPDATE AVTALE, SET Dato='20/03/2015', WHERE AvtaleID='1'")
+
+#(Gretha, Hans, BrodreneDahl, BarackObahamas, DonaldDuck)
+#(Hansilove, Grethatheta, utpaaturaldrisur, USA, Quack)")
 
 
 for statement in statements:
