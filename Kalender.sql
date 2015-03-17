@@ -1,4 +1,5 @@
 CREATE DATABASE Kalender;
+USE Kalender;
 
 CREATE TABLE Avtale
 	(AvtaleID INT NOT NULL, 
@@ -28,44 +29,44 @@ CREATE TABLE Alarm
 	(AlarmID INT NOT NULL,
     Tidspunkt VARCHAR(5) NOT NULL,
     AlarmType VARCHAR(25) NOT NULL,
-    Brukernavn VARCHAR(20) NOT NULL
-    PRIMARY KEY (AlarmID), ,
-    FOREIGN KEY (Brukernavn) REFERENCES Ansatt );
+    Brukernavn VARCHAR(20) NOT NULL,
+    PRIMARY KEY (AlarmID),
+    FOREIGN KEY (Brukernavn) REFERENCES Ansatt(Brukernavn) );
 
 CREATE TABLE Deltaker
 	(Brukernavn VARCHAR(20) NOT NULL,
     AvtaleID INT NOT NULL,
     DeltagerStatus BOOLEAN NOT NULL,
-    PRIMARY KEY (Brukernavn, AvtaleID),
-    FOREIGN KEY Brukernavn REFERENCES Ansatt,
-    FOREIGN KEY AvtaleID REFERENCES Avtale);
+    PRIMARY KEY (AvtaleID),
+    FOREIGN KEY Brukernavn REFERENCES Ansatt(Brukernavn),
+    FOREIGN KEY AvtaleID REFERENCES Avtale(AvtaleID) );
 
 CREATE TABLE Møteleder
 	(Brukernavn VARCHAR(20) NOT NULL,
     AvtaleID INT NOT NULL,
     Counter INT NOT NULL, # To avoid equlaity between Møteleder and Deltaker
     PRIMARY KEY (Brukernavn, AvtaleID,Counter),
-	FOREIGN KEY Brukernavn REFERENCES Ansatt,
-	FOREIGN KEY AvtaleID REFERENCES Avtale);
+	FOREIGN KEY Brukernavn REFERENCES Ansatt(Brukernavn),
+	FOREIGN KEY AvtaleID REFERENCES Avtale(AvtaleID));
 
 CREATE TABLE Gruppemedlemmer(
 	GruppeID INT NOT NULL,
 	Brukernavn VARCHAR(20) NOT NULL,
 	PRIMARY KEY (GruppeID, Brukernavn),
-	FOREIGN KEY GruppeID REFERENCES Gruppe,
-	FOREIGN KEY Brukernavn REFERENCES Ansatt);
+	FOREIGN KEY GruppeID REFERENCES Gruppe(GruppeID),
+	FOREIGN KEY Brukernavn REFERENCES Ansatt(Brukernavn));
 
 
 CREATE TABLE Invitert(
 	GruppeID INT NOT NULL,
 	AvtaleID INT NOT NULL,
 	PRIMARY KEY (GruppeID,AvtaleID),
-	FOREIGN KEY AvtaleID REFERENCES Avtale,
-	FOREIGN KEY GruppeID REFERENCES Gruppe);
+	FOREIGN KEY AvtaleID REFERENCES Avtale(AvtaleID),
+	FOREIGN KEY GruppeID REFERENCES Gruppe(GruppeID));
 
 CREATE TABLE AvtaleAlarmer(
 	AvtaleID INT NOT NULL,
 	AlarmID INT NOT NULL,
 	PRIMARY KEY(AvtaleID, AlarmID),
-	FOREIGN KEY (AvtaleID) REFERENCES Avtale,
-	FOREIGN KEY (AlarmID) REFERENCES Alarm);
+	FOREIGN KEY (AvtaleID) REFERENCES Avtale(AvtaleID),
+	FOREIGN KEY (AlarmID) REFERENCES Alarm(AlarmID));
