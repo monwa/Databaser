@@ -1,5 +1,6 @@
 CREATE DATABASE Kalender;
 USE Kalender;
+GRANT ALL PRIVILEGES ON Kalender.* TO 'Eivind'@'%' identified by 'secret';
 
 CREATE TABLE Avtale(
 	AvtaleID INT NOT NULL, 
