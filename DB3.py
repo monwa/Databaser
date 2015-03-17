@@ -5,12 +5,21 @@ __author__ = 'Monwa'
 import MySQLdb
 
 # connect
-db = MySQLdb.connect(host="localhost", user="appuser", passwd="",
-db="onco")
+db = MySQLdb.connect(host="78.91.37.250", user="Eivind", passwd="secret",
+db="Kalender")
 cursor = db.cursor()
 
 # execute SQL select statement
-cursor.execute("SELECT * FROM LOCATION")
+statements = []
+statements.append("SELECT * FROM AVTALE")
+statements.append("INSERT INTO ANSATT" "")
+statements.append("SELECT * FROM ANSATT")
+#statements.append("UPDATE AVTALE, SET Dato='20/03/2015', WHERE AvtaleID='1'")
+
+
+for statement in statements:
+	print(statement)
+	cursor.execute(statement)
 
 # commit your changes
 db.commit()
