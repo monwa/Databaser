@@ -10,6 +10,23 @@ db="Kalender")
 cursor = db.cursor()
 
 # execute SQL select statement
+choice = input("Tast inn følende \n - Tast 1 for å legge inn avtale \n - Tast 2 for å ..") 
+
+if choice = 1:
+	print("Du valgte å legge inn en avtale")
+	Dato = input("Skriv inn avtaledato (dd-mm-yyyy)")
+	StartTid = input("Skriv inn starttid(hhmm)")
+	StoppTid = input("Skriv inn stopptid(hhmm)")
+	Beskrivelse = input("Skriv inn en Beskrivelse")
+	# Send en spørring over ledige møterom i tidspunktet 
+	cursor.execute("SELECT RomID, Kapasitet FROM Avtale WHERE StoppTid<"+StartTid" OR StartTid>"+StoppTid"")
+	RomID = input("Skriv inn ønsket RomID")
+
+	Kapasitet = cursor. Select Kapasitet from Rom where RomID = RomID.
+	cursor.execute("INSERT INTO Avtale (Dato, StartTid, StoppTid, Beskrivelse, RomID, Kapasitet*/) VALUES ("+Dato+","+StartTid+","+StoppTid+","+Beskrivelse+","+RomID+")")
+if choice = 2:
+
+
 statements = []
 statements.append("SELECT * FROM Avtale")
 statements.append("INSERT INTO Ansatt (Brukernavn, Passord) VALUES ('Gretha', 'Grethatheta')")
