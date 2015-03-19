@@ -10,8 +10,6 @@ CREATE TABLE Avtale(
     StartTID VARCHAR(11) NOT NULL,
     SluttTID VARCHAR(11) NOT NULL,
     Beskrivelse VARCHAR(225) NOT NULL,
-    RomID INT,
-	Kapasitet INT,
     PRIMARY KEY (AvtaleID)
 );
 
@@ -40,7 +38,7 @@ CREATE TABLE Alarm(
 CREATE TABLE Deltaker(
 	Brukernavn VARCHAR(20) NOT NULL,
     AvtaleID INT NOT NULL,
-    DeltagerStatus BOOLEAN NOT NULL,
+    DeltagerStatus VARCHAR(10) NOT NULL,
     PRIMARY KEY (AvtaleID),
     FOREIGN KEY (Brukernavn) REFERENCES Ansatt(Brukernavn),
     FOREIGN KEY (AvtaleID) REFERENCES Avtale(AvtaleID) 
@@ -49,7 +47,7 @@ CREATE TABLE Deltaker(
 CREATE TABLE Møteleder(
 	Brukernavn VARCHAR(20) NOT NULL,
     AvtaleID INT NOT NULL,
-    Counter INT NOT NULL, # To avoid equlaity between Møteleder and Deltaker
+    Counter INT NOT NULL,
     PRIMARY KEY (Brukernavn, AvtaleID, Counter),
 	FOREIGN KEY (Brukernavn) REFERENCES Ansatt(Brukernavn),
 	FOREIGN KEY (AvtaleID) REFERENCES Avtale(AvtaleID)
@@ -78,4 +76,11 @@ CREATE TABLE AvtaleAlarmer(
 	PRIMARY KEY(AvtaleID, AlarmID),
 	FOREIGN KEY (AvtaleID) REFERENCES Avtale(AvtaleID),
 	FOREIGN KEY (AlarmID) REFERENCES Alarm(AlarmID)
+);
+
+CREATE TABLE Rom (
+  RomID varchar(40) NOT NULL,
+  Kapasitet varchar(40) NOT NULL,	
+  PRIMARY KEY (RomID),
+  FOREIGN KEY(AvtaleID) REFERENCES Avtale(AvtaleID)
 );
