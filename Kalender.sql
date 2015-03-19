@@ -1,18 +1,25 @@
-CREATE DATABASE Kalender;
+CREATE DATABASE Kalender2;
 USE Kalender;
 
 
 GRANT ALL PRIVILEGES ON Kalender.* TO 'Eivind'@'%' identified by 'secret';
 
-CREATE TABLE Avtale(
-	AvtaleID INT NOT NULL AUTO_INCREMENT, 
-    Dato VARCHAR (11) NOT NULL, 
-    StartTID VARCHAR(11) NOT NULL,
-    SluttTID VARCHAR(11) NOT NULL,
-    Beskrivelse VARCHAR(225) NOT NULL,
-    RomID INT,
-	Kapasitet INT,
-    PRIMARY KEY (AvtaleID)
+
+CREATE TABLE Rom (
+	RomID varchar(40) NOT NULL,
+	Kapasitet varchar(40) NOT NULL,	
+	PRIMARY KEY (RomID)
+);
+
+CREATE TABLE Avtale (
+  AvtaleID int(11) NOT NULL AUTO_INCREMENT,
+  Dato varchar(11) NOT NULL,
+  StartTID varchar(11) NOT NULL,
+  SluttTID varchar(11) NOT NULL,
+  Beskrivelse varchar(225) NOT NULL,
+  RomID INT NOT NULL,
+  PRIMARY KEY (AvtaleID),
+  FOREIGN KEY (RomID) REFERENCES Rom(RomID)
 );
 
 CREATE TABLE Gruppe(
@@ -40,7 +47,7 @@ CREATE TABLE Alarm(
 CREATE TABLE Deltaker(
 	Brukernavn VARCHAR(20) NOT NULL,
     AvtaleID INT NOT NULL,
-    DeltagerStatus BOOLEAN NOT NULL,
+    DeltagerStatus VARCHAR(10) NOT NULL,
     PRIMARY KEY (AvtaleID),
     FOREIGN KEY (Brukernavn) REFERENCES Ansatt(Brukernavn),
     FOREIGN KEY (AvtaleID) REFERENCES Avtale(AvtaleID) 
@@ -49,7 +56,7 @@ CREATE TABLE Deltaker(
 CREATE TABLE Møteleder(
 	Brukernavn VARCHAR(20) NOT NULL,
     AvtaleID INT NOT NULL,
-    Counter INT NOT NULL, # To avoid equlaity between Møteleder and Deltaker
+    Counter INT NOT NULL,
     PRIMARY KEY (Brukernavn, AvtaleID, Counter),
 	FOREIGN KEY (Brukernavn) REFERENCES Ansatt(Brukernavn),
 	FOREIGN KEY (AvtaleID) REFERENCES Avtale(AvtaleID)
@@ -79,3 +86,4 @@ CREATE TABLE AvtaleAlarmer(
 	FOREIGN KEY (AvtaleID) REFERENCES Avtale(AvtaleID),
 	FOREIGN KEY (AlarmID) REFERENCES Alarm(AlarmID)
 );
+
