@@ -1,4 +1,4 @@
-CREATE DATABASE Kalender2;
+CREATE DATABASE Kalender;
 USE Kalender;
 
 
