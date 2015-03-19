@@ -79,8 +79,8 @@ CREATE TABLE AvtaleAlarmer(
 );
 
 CREATE TABLE Rom (
-  RomID varchar(40) NOT NULL,
-  Kapasitet varchar(40) NOT NULL,	
-  PRIMARY KEY (RomID),
-  FOREIGN KEY(AvtaleID) REFERENCES Avtale(AvtaleID)
+	RomID varchar(40) NOT NULL,
+	Kapasitet varchar(40) NOT NULL,	
+	PRIMARY KEY (RomID),
+	FOREIGN KEY(AvtaleID) REFERENCES Avtale(AvtaleID)
 );
