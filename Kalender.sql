@@ -1,16 +1,25 @@
-CREATE DATABASE Kalender;
+CREATE DATABASE Kalender2;
 USE Kalender;
 
 
 GRANT ALL PRIVILEGES ON Kalender.* TO 'Eivind'@'%' identified by 'secret';
 
-CREATE TABLE Avtale(
-	AvtaleID INT NOT NULL AUTO_INCREMENT, 
-    Dato VARCHAR (11) NOT NULL, 
-    StartTID VARCHAR(11) NOT NULL,
-    SluttTID VARCHAR(11) NOT NULL,
-    Beskrivelse VARCHAR(225) NOT NULL,
-    PRIMARY KEY (AvtaleID)
+
+CREATE TABLE Rom (
+	RomID varchar(40) NOT NULL,
+	Kapasitet varchar(40) NOT NULL,	
+	PRIMARY KEY (RomID)
+);
+
+CREATE TABLE Avtale (
+  AvtaleID int(11) NOT NULL AUTO_INCREMENT,
+  Dato varchar(11) NOT NULL,
+  StartTID varchar(11) NOT NULL,
+  SluttTID varchar(11) NOT NULL,
+  Beskrivelse varchar(225) NOT NULL,
+  RomID INT NOT NULL,
+  PRIMARY KEY (AvtaleID),
+  FOREIGN KEY (RomID) REFERENCES Rom(RomID)
 );
 
 CREATE TABLE Gruppe(
@@ -78,9 +87,3 @@ CREATE TABLE AvtaleAlarmer(
 	FOREIGN KEY (AlarmID) REFERENCES Alarm(AlarmID)
 );
 
-CREATE TABLE Rom (
-	RomID varchar(40) NOT NULL,
-	Kapasitet varchar(40) NOT NULL,	
-	PRIMARY KEY (RomID),
-	FOREIGN KEY(AvtaleID) REFERENCES Avtale(AvtaleID)
-);
