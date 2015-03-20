@@ -71,7 +71,9 @@ elif choice == 5:
     cursor.execute("SELECT AvtaleID FROM Avtale JOIN Rom ON Avtale.RomID=Rom.RomID WHERE (Dato=%s AND Kapasitet<%s)", (str(Dato),str(Kapasitet)))
     for row in cursor:
         print("Deleting AvtaleID "+str(row[0]))
+        cursor.execute("alter table Avtale nocheck constraint all")
         cursor.execute("DELETE FROM Avtale WHERE AvtaleID = %s", row[0])
+        cursor.execute("alter table Avtale check constraint all")
 
 
 #statements = []
