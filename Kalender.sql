@@ -1,4 +1,4 @@
-CREATE DATABASE Kalender2;
+CREATE DATABASE Kalender;
 USE Kalender;
 
 
@@ -12,7 +12,7 @@ CREATE TABLE Rom (
 );
 
 CREATE TABLE Avtale (
-  AvtaleID int(11) NOT NULL AUTO_INCREMENT,
+  AvtaleID int(11) DEFAULT VALUE 1 NOT NULL AUTO_INCREMENT,
   Dato varchar(11) NOT NULL,
   StartTID varchar(11) NOT NULL,
   SluttTID varchar(11) NOT NULL,
@@ -21,9 +21,8 @@ CREATE TABLE Avtale (
   PRIMARY KEY (AvtaleID),
   FOREIGN KEY (RomID) REFERENCES Rom(RomID)
 );
-
 CREATE TABLE Gruppe(
-	GruppeID INT NOT NULL AUTO_INCREMENT,
+	GruppeID INT DEFAULT VALUE 1 NOT NULL AUTO_INCREMENT,
 	ParentGroup INT,
 	FOREIGN KEY(ParentGroup) REFERENCES Gruppe(GruppeID),
 	PRIMARY KEY (GruppeID)
@@ -36,7 +35,7 @@ CREATE TABLE Ansatt(
 );
 
 CREATE TABLE Alarm(
-	AlarmID INT NOT NULL AUTO_INCREMENT,
+	AlarmID INT DEFAULT VALUE 1 NOT NULL AUTO_INCREMENT,
     Tidspunkt VARCHAR(5) NOT NULL,
     AlarmType VARCHAR(25) NOT NULL,
     Brukernavn VARCHAR(20) NOT NULL,
@@ -56,7 +55,7 @@ CREATE TABLE Deltaker(
 CREATE TABLE Møteleder(
 	Brukernavn VARCHAR(20) NOT NULL,
     AvtaleID INT NOT NULL,
-    Counter INT NOT NULL,
+    Counter INT DEFAULT VAULE 1 NOT NULL
     PRIMARY KEY (Brukernavn, AvtaleID, Counter),
 	FOREIGN KEY (Brukernavn) REFERENCES Ansatt(Brukernavn),
 	FOREIGN KEY (AvtaleID) REFERENCES Avtale(AvtaleID)
